@@ -4,7 +4,7 @@
 
 Use this command to install the fixed version:
 ```
-npm install fabricjs https://github.com/Thisura98/fabric.js-v460-dispose-fix.git#ef4837e8bc1f2713ef7520a55667509491cd69b7
+npm install fabricjs https://github.com/Thisura98/fabric.js-v460-dispose-fix.git#161b4d7f3e9a4dc50a4356c0cebf410ed5213352
 ```
 
 #### Notes:
