@@ -1,5 +1,23 @@
 # Fabric.js
 
+### Special version for EDGE project
+
+Use this command to install the fixed version:
+```
+npm install fabricjs https://github.com/Thisura98/fabric.js-v460-dispose-fix.git#ef4837e8bc1f2713ef7520a55667509491cd69b7
+```
+
+#### Notes:
+
+Commit `ef4837e` belongs to branch `fabric.js-v460-dispose-fix`. It is a branch from commit tag `v460`, using fixes from this PR:
+
+- [https://github.com/fabricjs/fabric.js/pull/7885/files](https://github.com/fabricjs/fabric.js/pull/7885/files)
+
+Original Repo:
+
+- [https://github.com/fabricjs/fabric.js](https://github.com/fabricjs/fabric.js)
+
+
 <a href="http://fabricjs.com/kitchensink" target="_blank"><img align="right" src="/lib/screenshot.png" style="width:400px"></a>
 
 A **simple and powerful Javascript HTML5 canvas library**.
