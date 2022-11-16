@@ -1,3 +1,6 @@
+// If this line is on the project that means it worked!
+// - thisura 2022 November 17
+
 /* build: `node build.js modules=ALL exclude=gestures,accessors,erasing requirejs minifier=uglifyjs` */
 /*! Fabric.js Copyright 2008-2015, Printio (Juriy Zaytsev, Maxim Chernyak) */
 
@@ -11668,6 +11671,10 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
     },
 
     renderTopLayer: function(ctx) {
+      if (!ctx) {
+        return;
+      }
+
       ctx.save();
       if (this.isDrawingMode && this._isCurrentlyDrawing) {
         this.freeDrawingBrush && this.freeDrawingBrush._render();
@@ -12436,21 +12443,24 @@ fabric.PatternBrush = fabric.util.createClass(fabric.PencilBrush, /** @lends fab
      * @chainable
      */
     dispose: function () {
-      var wrapper = this.wrapperEl;
+      var wrapperEl = this.wrapperEl,
+          lowerCanvasEl = this.lowerCanvasEl,
+          upperCanvasEl = this.upperCanvasEl,
+          cacheCanvasEl = this.cacheCanvasEl;
       this.removeListeners();
-      wrapper.removeChild(this.upperCanvasEl);
-      wrapper.removeChild(this.lowerCanvasEl);
+      this.callSuper('dispose');
+      wrapperEl.removeChild(upperCanvasEl);
+      wrapperEl.removeChild(lowerCanvasEl);
       this.contextCache = null;
       this.contextTop = null;
-      ['upperCanvasEl', 'cacheCanvasEl'].forEach((function(element) {
-        fabric.util.cleanUpJsdomNode(this[element]);
-        this[element] = undefined;
-      }).bind(this));
-      if (wrapper.parentNode) {
-        wrapper.parentNode.replaceChild(this.lowerCanvasEl, this.wrapperEl);
+      fabric.util.cleanUpJsdomNode(upperCanvasEl);
+      this.upperCanvasEl = undefined;
+      fabric.util.cleanUpJsdomNode(cacheCanvasEl);
+      this.cacheCanvasEl = undefined;
+      if (wrapperEl.parentNode) {
+        wrapperEl.parentNode.replaceChild(lowerCanvasEl, wrapperEl);
       }
       delete this.wrapperEl;
-      fabric.StaticCanvas.prototype.dispose.call(this);
       return this;
     },
 
