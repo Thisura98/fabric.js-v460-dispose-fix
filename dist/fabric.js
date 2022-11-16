@@ -9317,6 +9317,10 @@ fabric.ElementsParser = function(elements, callback, options, reviver, parsingOp
      * @chainable
      */
     clearContext: function(ctx) {
+      if (!ctx){
+        return;
+      }
+
       ctx.clearRect(0, 0, this.width, this.height);
       return this;
     },
@@ -9427,6 +9431,11 @@ fabric.ElementsParser = function(elements, callback, options, reviver, parsingOp
       var v = this.viewportTransform, path = this.clipPath;
       this.cancelRequestedRender();
       this.calcViewportBoundaries();
+
+      if (!ctx){
+        return;
+      }
+
       this.clearContext(ctx);
       fabric.util.setImageSmoothing(ctx, this.imageSmoothingEnabled);
       this.fire('before:render', { ctx: ctx, });
